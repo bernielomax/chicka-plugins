@@ -15,12 +15,12 @@ count = 0
 for image in client.images.list():
     count += 1
 
-status = True
+result = True
 
 if count > args.threshold:
-    status = False
+    result = False
 
 
-result = {'status': status, 'result': count, 'threshold': args.threshold, 'expect': True, 'description': "the total number of docker images must not exceed %d" %(args.threshold)}
+result = {'result': result, 'data': count, 'expect': True, 'description': "the total number of docker images must not exceed %d" %(args.threshold)}
 
 print json.dumps(result)

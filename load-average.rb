@@ -50,9 +50,8 @@ end
 
 result = {
     description: "load must be #{options[:expect] ? "below" : "above"} #{options[:threshold]}",
-    threshold: options[:threshold],
-    result: loadAverage,
-    status: loadAverage.to_f < options[:threshold],
+    data: loadAverage,
+    result: loadAverage.to_f < options[:threshold],
     expect: options[:expect]
 }
 

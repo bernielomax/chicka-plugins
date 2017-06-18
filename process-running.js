@@ -29,7 +29,7 @@ exec('ps cax | grep ' + argv.name + ' | awk \'{print $5}\'', {silent:true}, func
         result = true;
     }
     
-    var output = {status: (argv.expect == result), result: result, description: description, expect: argv.expect }
+    var output = {result: (argv.expect == result), data: result, description: description, expect: argv.expect }
 
     console.log(JSON.stringify(output)) 
 

@@ -26,13 +26,13 @@ then
     exit 1
 fi
 
-STATUS=true
+RESULT=true
 
 FOUND=$(grep -o ${MATCH} ${FILE} | wc -l |awk '{print $1}')
 
 if [ ${FOUND} -gt ${THRESHOLD} ]
 then
-    STATUS=false
+    RESULT=false
 fi
 
-echo "{\"status\": ${STATUS}, \"result\": ${FOUND}, \"description\": \"no more than ${THRESHOLD} occurences of string '${MATCH}' in '${FILE}'\", \"expect\": true}"
+echo "{\"result\": ${RESULT}, \"data\": ${FOUND}, \"description\": \"no more than ${THRESHOLD} occurences of string '${MATCH}' in '${FILE}'\", \"expect\": true}"
