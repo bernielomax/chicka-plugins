@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 USAGE="Usage: stringmatch.sh <file-path> <match-string> <threshold>"
 
