@@ -7,7 +7,7 @@ allowedTypes = ["1m", "5m", "15m"]
 
 options = {
     :type => "1m",
-    :inverse => true,
+    :inverse => false,
     :threshold => 1.0
 }
 
@@ -17,16 +17,12 @@ OptionParser.new do |opts|
         puts type
 		options[:type] = type;
 	end
-    opts.on("-e", "--inverse, [true, false]", "inverse result") do |inverse|
-        if inverse == "true"
-            options[:inverse] = true
-        else
-            options[:inverse] = false
-        end
-	end
-    opts.on("-d", "--threshold N", Float, "inverse result") do |threshold|
+  opts.on("-i", "--[no-]inverse", "run in inverse mode") do |inverse|
+        opts[:inverse] = inverse
+  end
+  opts.on("-n", "--threshold N", Float, "load average threshold") do |threshold|
         options[:threshold] = threshold
-    end
+  end
 end.parse!
 
 if  ! allowedTypes.include? options[:type]
@@ -35,7 +31,7 @@ end
 
 out = `uptime`
 
-vals = out.split(/load averages?\:/)[1].split(" ")
+vals = out.split("load averages:")[1].split(" ")
 
 loadAverage = 0
 
