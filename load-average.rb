@@ -18,7 +18,7 @@ OptionParser.new do |opts|
 		options[:type] = type;
 	end
   opts.on("-i", "--[no-]inverse", "run in inverse mode") do |inverse|
-        opts[:inverse] = inverse
+        options[:inverse] = inverse
   end
   opts.on("-n", "--threshold N", Float, "load average threshold") do |threshold|
         options[:threshold] = threshold
