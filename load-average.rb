@@ -7,7 +7,7 @@ allowedTypes = ["1m", "5m", "15m"]
 
 options = {
     :type => "1m",
-    :expect => true,
+    :inverse => true,
     :threshold => 1.0
 }
 
@@ -17,14 +17,14 @@ OptionParser.new do |opts|
         puts type
 		options[:type] = type;
 	end
-    opts.on("-e", "--expect, [true, false]", "expect result") do |expect|
-        if expect == "true"
-            options[:expect] = true
+    opts.on("-e", "--inverse, [true, false]", "inverse result") do |inverse|
+        if inverse == "true"
+            options[:inverse] = true
         else
-            options[:expect] = false
+            options[:inverse] = false
         end
 	end
-    opts.on("-d", "--threshold N", Float, "expect result") do |threshold|
+    opts.on("-d", "--threshold N", Float, "inverse result") do |threshold|
         options[:threshold] = threshold
     end
 end.parse!
@@ -49,13 +49,10 @@ when "15m"
 end
 
 result = {
-    description: "load must be #{options[:expect] ? "below" : "above"} #{options[:threshold]}",
+    description: "#{options[:type]} average load must be #{options[:inverse] ? "below" : "above"} #{options[:threshold]}",
     data: loadAverage,
-    result: loadAverage.to_f < options[:threshold],
-    expect: options[:expect]
+    result: loadAverage.to_f < options[:threshold]
 }
 
 
 puts JSON.dump result
-
-

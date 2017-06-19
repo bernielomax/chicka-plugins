@@ -35,4 +35,4 @@ then
     RESULT=false
 fi
 
-echo "{\"result\": ${RESULT}, \"data\": ${FOUND}, \"description\": \"no more than ${THRESHOLD} occurences of string '${MATCH}' in '${FILE}'\", \"expect\": true}"
+echo "{\"result\": ${RESULT}, \"data\": ${FOUND}, \"description\": \"no more than ${THRESHOLD} occurences of string '${MATCH}' in '${FILE}'\"}"

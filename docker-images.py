@@ -21,6 +21,6 @@ if count > args.threshold:
     result = False
 
 
-result = {'result': result, 'data': count, 'expect': True, 'description': "the total number of docker images must not exceed %d" %(args.threshold)}
+result = {'result': result, 'data': count, 'description': "the total number of docker images must not exceed %d" %(args.threshold)}
 
 print json.dumps(result)
