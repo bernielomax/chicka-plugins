@@ -29,8 +29,12 @@ exec('ps cax | grep ' + argv.name + ' | awk \'{print $5}\'', {silent:true}, func
         result = true;
     }
 
-    var output = {result: (argv.inverse == result), data: result, description: description }
-
+    if ( argv.inverse) {                                                                                         
+        result = !result;                                                                                        
+    }                                                                                                            
+                                                                                                                 
+    var output = {result: result, data: result, description: description }                                       
+                                                                              
     console.log(JSON.stringify(output))
 
 });
