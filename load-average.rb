@@ -35,7 +35,7 @@ end
 
 out = `uptime`
 
-vals = out.split("load averages:")[1].split(" ")
+vals = out.split(/load averages?\:/)[1].split(" ")
 
 loadAverage = 0
 
