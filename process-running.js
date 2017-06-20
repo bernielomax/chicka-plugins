@@ -10,7 +10,7 @@ var argv = require('yargs')
     .describe('n', 'Name of the process')
     .option('inverse', {
         alias: 'i',
-        default: true,
+        default: false,
         type: 'boolean',
     })
     .describe('i', 'Inverse the check')
@@ -21,7 +21,7 @@ var argv = require('yargs')
 
 var result = false;
 
-var description = "check that the '" + argv.name + "' process is " + ( ! argv.inverse ? "not " : "") + "running";
+var description = "check that the '" + argv.name + "' process is " + ( argv.inverse ? "not " : "") + "running";
 
 exec('ps cax | grep ' + argv.name + ' | awk \'{print $5}\'', {silent:true}, function(status, output) {
 
@@ -29,12 +29,12 @@ exec('ps cax | grep ' + argv.name + ' | awk \'{print $5}\'', {silent:true}, func
         result = true;
     }
 
-    if ( argv.inverse) {                                                                                         
-        result = !result;                                                                                        
-    }                                                                                                            
-                                                                                                                 
-    var output = {result: result, data: result, description: description }                                       
-                                                                              
+    if ( argv.inverse) {
+       result = !result;
+    }   
+
+    var output = {result: result, data: result, description: description }
+
     console.log(JSON.stringify(output))
 
 });
